@@ -1,3 +1,9 @@
+1.0.0-b18
+
+* Close connection during async_read on close frame
+
+--------------------------------------------------------------------------------
+
 1.0.0-b17
 
 * Change implicit to default value in example
