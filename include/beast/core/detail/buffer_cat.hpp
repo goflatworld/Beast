@@ -8,6 +8,7 @@
 #ifndef BEAST_DETAIL_BUFFER_CAT_HPP
 #define BEAST_DETAIL_BUFFER_CAT_HPP
 
+#include <beast/core/detail/type_traits.hpp>
 #include <boost/asio/buffer.hpp>
 #include <cstdint>
 #include <iterator>
@@ -250,7 +251,8 @@ private:
     reference
     dereference(C<sizeof...(Bs)>) const
     {
-        throw std::logic_error("invalid iterator");
+        throw detail::make_exception<std::logic_error>(
+            "invalid iterator", __FILE__, __LINE__);
     }
 
     template<std::size_t I>
@@ -266,7 +268,8 @@ private:
     void
     increment(C<sizeof...(Bs)>)
     {
-        throw std::logic_error("invalid iterator");
+        throw detail::make_exception<std::logic_error>(
+            "invalid iterator", __FILE__, __LINE__);
     }
 
     template<std::size_t I>
@@ -307,7 +310,8 @@ private:
             --iter<I>();
             return;
         }
-        throw std::logic_error("invalid iterator");
+        throw detail::make_exception<std::logic_error>(
+            "invalid iterator", __FILE__, __LINE__);
     }
 
     template<std::size_t I>
