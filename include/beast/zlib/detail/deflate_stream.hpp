@@ -1268,6 +1268,7 @@ init()
     if(! buf_ || buf_size_ != needed)
     {
         buf_.reset(new std::uint8_t[needed]);
+std::memset(buf_.get(), 0, needed);
         buf_size_ = needed;
     }
 
