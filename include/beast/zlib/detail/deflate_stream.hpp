@@ -911,7 +911,6 @@ doReset(
 
     level_ = level;
     strategy_ = strategy;
-
     inited_ = false;
 }
 
@@ -1011,6 +1010,8 @@ void
 deflate_stream::
 doWrite(z_params& zs, Flush flush, error_code& ec)
 {
+    maybe_init();
+
     if(zs.next_out == 0 || (zs.next_in == 0 && zs.avail_in != 0) ||
         (status_ == FINISH_STATE && flush != Flush::finish))
     {
@@ -1022,8 +1023,6 @@ doWrite(z_params& zs, Flush flush, error_code& ec)
         ec = error::need_buffers;
         return;
     }
-
-    maybe_init();
 
     // value of flush param for previous deflate call
     boost::optional<Flush> old_flush = last_flush_;
