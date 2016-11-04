@@ -284,36 +284,6 @@ public:
         doWrite(zs, flush, ec);
     }
 
-    /** Set the compression dictionary from a byte sequence.
-
-        Initializes the compression dictionary from the given byte sequence
-        without producing any compressed output. This function must be
-        called immediately after initialization or reset, before any call
-        of `write`. The compressor and decompressor must use exactly the
-        same dictionary. 
-
-        The dictionary should consist of strings (byte sequences) that are
-        likely to be encountered later in the data to be compressed, with
-        the most commonly used strings preferably put towards the end of
-        the dictionary. Using a dictionary is most useful when the data to
-        be compressed is short and can be predicted with good accuracy; the
-        data can then be compressed better than with the default empty
-        dictionary.
-
-        Depending on the size of the compression data structures selected
-        during initialization, a part of the dictionary may in effect be
-        discarded, for example if the dictionary is larger than the window
-        size. Thus the strings most likely to be useful should be put at
-        the end of the dictionary, not at the front. In addition, the
-        current implementation of deflate will use at most the window size
-        minus 262 bytes of the provided dictionary.
-    */
-    void
-    dictionary(Byte const* dict, uInt dictLength, error_code& ec)
-    {
-        return doDictionary(dict, dictLength, ec);
-    }
-
     /** Update the compression level and strategy.
 
         This function dynamically updates the compression level and

@@ -1143,6 +1143,7 @@ doWrite(z_params& zs, Flush flush, error_code& ec)
     }
 }
 
+// VFALCO Warning: untested
 template<class>
 void
 deflate_stream::
